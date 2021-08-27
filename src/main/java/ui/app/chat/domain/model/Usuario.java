@@ -2,6 +2,7 @@ package ui.app.chat.domain.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -17,6 +19,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Builder
 public class Usuario {
 	
 	@Id
@@ -29,7 +32,7 @@ public class Usuario {
 	@Column
 	private String password;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "usuarioEmissor")
 	private List<Batepapo> batepapos;
 	
 }
