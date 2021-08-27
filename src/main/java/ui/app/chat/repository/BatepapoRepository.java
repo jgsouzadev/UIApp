@@ -10,7 +10,7 @@ import ui.app.chat.domain.model.ChatDTO;
 
 public interface BatepapoRepository extends JpaRepository<Batepapo, Long>{
 	
-	@Query("SELECT new ui.app.chat.domain.model.ChatDTO(c.nome, c.id) FROM #{entityName}"
+	@Query("SELECT new ui.app.chat.domain.model.ChatDTO(c.usuarioEmissor.id, c.usuarioRecebedor.nome) FROM #{#entityName}"
 			+ " c WHERE c.usuarioEmissor.id = :idUsuario OR c.usuarioRecebedor.id = :idUsuario")
 	List<ChatDTO> buscarChatPorEmissor(Long idUsuario);
 	
